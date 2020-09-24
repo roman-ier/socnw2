@@ -3,7 +3,6 @@ import './App.css';
 import News from './comp/pages/News/News';
 import Music from './comp/pages/Music/Music';
 import Settings from './comp/pages/Settings/Settings';
-import Header from './comp/Header/Header';
 import Navbar from './comp/Navbar/Navbar';
 import {BrowserRouter, Route} from 'react-router-dom';
 import DialogsContainer from "./comp/pages/Dialogs/DialogsContainer";
@@ -34,6 +33,7 @@ const App = (props) => {
                         state={props.state}
                         dispatch={props.dispatch}
                     />}/>
+                    <Route path='/users' render={() => <UsersContainer/>}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>
