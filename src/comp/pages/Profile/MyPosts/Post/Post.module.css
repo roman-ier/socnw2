@@ -1,0 +1,12 @@
+.post{
+  display: grid;
+  grid-template-columns: 2fr 8fr 3fr 25fr;
+}
+.item{
+  color: hotpink;
+}
+.item img{
+  width: 50px;
+  height: 50px;
+  border-radius: 30px;
+}

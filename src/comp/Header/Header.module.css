@@ -1,0 +1,22 @@
+.header {
+    grid-area: h;
+    background-color: rgb(27, 54, 65);
+
+}
+
+.header img {
+    width: 100px;
+}
+
+.loginBlock {
+    float: right;
+
+}
+
+.loginBlock span {
+    color: yellow;
+}
+
+.loginBlock a {
+    color: azure;
+}
