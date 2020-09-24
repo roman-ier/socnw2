@@ -1,3 +1,18 @@
+.box {
+    position: relative;
+    overflow: hidden;
+    width: 1000px;
+    height: 300px;
+}
+
+.box img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
 .descriptionBlock {
     padding: 10px;
 
