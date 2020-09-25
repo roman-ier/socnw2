@@ -12,11 +12,11 @@ let mapStateToProps = (state) => {
 }
 let mapDispatchToProps = (dispatch) => {
     return {
-        updateNewMessageBody: (body) => {
+/*        updateNewMessageBody: (body) => {
             dispatch(updateDiaChangeActionCreator(body));
-        },
-        sendMessages: () => {
-            dispatch(addDiaActionCreator());
+        },*/
+        sendMessages: (newMessageBody) => {
+            dispatch(addDiaActionCreator(newMessageBody));
         }
     }
 }
