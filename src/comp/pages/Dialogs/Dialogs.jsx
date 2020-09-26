@@ -1,5 +1,4 @@
 import React from 'react';
-//import {NavLink} from 'react-router-dom';
 import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem'
 import Message from './Message/Message'
@@ -13,18 +12,13 @@ const Dialogs = (props) => {
         name={d.name} key={d.id}/>);
     let messagesElements = state.messages.map(m => <Message
         message={m.message} key={m.id}/>);
-/*    let onDiaChange = (e) => {
-        let body = e.target.value;
-        props.updateNewMessageBody(body);
-    }
-       let onAddDia = () => {
-        props.sendMessages();
-    }*/
+
     if (!props.isAuth) return <Redirect to={'/login'}/>;
 
     const addNewMessage = (val) => {
         props.sendMessages(val.onDiaChange)
-        //alert(val.onDiaChange)
+        //props.resetForm()
+
     }
     return (
         <div className={s.dialogs}>
@@ -47,10 +41,7 @@ const AddMessageForm = (props) => {
         <div>
             <Field component='textarea' name='onDiaChange' placeholder='messageText'/>
         </div>
-        {/*<textarea placeholder='messageText' onChange={onDiaChange}
-                      value={state.newDialog}/>*/}
-        {/*<button onClick={onAddDia}>add Dia</button>*/
-            <button>rm</button>}
+        <button>add Dia</button>
     </form>
 }
 

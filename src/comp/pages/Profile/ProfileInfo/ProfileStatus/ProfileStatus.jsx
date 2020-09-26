@@ -37,14 +37,14 @@ debugger
         return (
 
             <div>
-                {!this.state.editMode ?
-                    <div>
-                        <span className={s.status} onDoubleClick={this.activateEditMode}>{this.state.status}</span>
-                    </div>
-                    :
+                {(this.state.editMode || this.state.status === '') ?
                     <div>
                         <input onChange={this.onStatusChange} autoFocus={true} value={this.state.status}
                                onBlur={this.activateEditMode}/>
+                    </div>
+                    :
+                    <div>
+                        <span className={s.status} onDoubleClick={this.activateEditMode}>{this.state.status}</span>
                     </div>
                 }
             </div>

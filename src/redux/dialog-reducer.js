@@ -1,4 +1,3 @@
-//const UPDATE_NEW_DIA_TEXT = 'UPDATE-NEW-DIA-TEXT';
 const ADD_DIA = 'ADD-DIA';
 
 let initialState = {
@@ -18,7 +17,6 @@ let initialState = {
         {id: 5, name: 'Sasha'},
         {id: 6, name: 'Valera'}
     ]
-    //,    newDialog: ''
 };
 
 const dialogReducer = (state = initialState, action) => {
@@ -30,9 +28,6 @@ const dialogReducer = (state = initialState, action) => {
             }
             return {...state, messages: [...state.messages, newDia]};
         }
-        /*case UPDATE_NEW_DIA_TEXT: {
-            return {...state, newDialog: action.newText};
-        }*/
         default:
             return state;
     }
@@ -40,5 +35,5 @@ const dialogReducer = (state = initialState, action) => {
 }
 
 export const addDiaActionCreator = (newMessageBody) => ({type: ADD_DIA, newMessageBody})
-//export const updateDiaChangeActionCreator = (text) => ({    type: UPDATE_NEW_DIA_TEXT,    newText: text})
+
 export default dialogReducer;
