@@ -7,7 +7,9 @@ const Header = (props) => {
         <header className={s.header}>
             <img src='https://nodejs.org/static/images/logo.svg'/>
             <div className={s.loginBlock}>
-                {props.isAuth ? <span> {props.login} </span> :
+                {props.isAuth ? <div><span> {props.login} </span>
+                        <button onClick={props.deleteLogout}>Log out</button>
+                    </div> :
                     <NavLink to={'/login'}>Login</NavLink>}
             </div>
         </header>
