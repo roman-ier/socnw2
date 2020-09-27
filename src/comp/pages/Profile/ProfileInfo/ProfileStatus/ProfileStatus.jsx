@@ -33,7 +33,6 @@ class ProfileStatus extends React.Component {
     }
 
     render() {
-debugger
         return (
 
             <div>

@@ -56,7 +56,7 @@ export const getStatus = (userId) => (dispatch) => {
 export const updateStatus = (status) => (dispatch) => {
     requestAPI.updateStatus(status)
         .then(response => {
-            debugger
+
             if (response.data.resultCode === 0) {
                 dispatch(updateStatus(response.data));
             }
