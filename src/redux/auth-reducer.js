@@ -34,8 +34,6 @@ export const getAuthUserData = () => (dispatch) => {
 }
 export const login = (email, password, rememberMe) => (dispatch) => {
     requestAPI.postLogin(email, password, rememberMe).then(response => {
-        debugger
-        alert(response.data.resultCode)
         if (response.data.resultCode === 0) {
             dispatch(getAuthUserData())
         } else {
