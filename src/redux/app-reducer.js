@@ -19,7 +19,7 @@ export const initializeApp = () => (dispatch) => {
     let promise = dispatch(getAuthUserData());
     Promise.all([promise])
         .then(() => {
-            alert('112')
+            //alert('112')
             dispatch(initializedSuccess())
         })
 }
