@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./users.module.css";
 import userPhoto from "../../assets/images/img1.jpg";
 import {NavLink} from "react-router-dom";
-import {requestAPI} from "../../api/api";
 
 let Users = (props) => {
     return <div>
@@ -13,16 +12,17 @@ let Users = (props) => {
                             <NavLink to={'/profile/' + u.id}>
                             <img src={u.photos.small != null ? u.photos.small : userPhoto} className={styles.photo}/>
                             </NavLink>
+
                         </div>
                         <div>
                             {u.followed
                                 ? <button disabled={props.followingInProgress.some(id => id === u.id)}
                                           onClick={() => {
-                                              props.unfollow(u.id)
+                                              props.unfollow(u.id, u.followed)
                                           }}>Unfollow</button>
                                 : <button disabled={props.followingInProgress.some(id => id === u.id)}
                                           onClick={() => {
-                                              props.follow(u.id)
+                                              props.follow(u.id, u.followed)
                                           }}>Follow</button>}
                         </div>
                     </span>
