@@ -9,33 +9,36 @@ import {
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../Common/Preloader/Preloader";
-import Number from "./Number/Number";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import Paginator from "../Common/Paginator/Paginator";
 
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        const {currentPage, pageSize, getUsers} = this.props;
+        getUsers(currentPage, pageSize);
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.getUsers(pageNumber, this.props.pageSize);
+        const {pageSize, getUsers} = this.props;
+        getUsers(pageNumber, pageSize);
     }
 
     render() {
+        const {follow, unfollow, followingInProgress, totalUsersCount, pageSize, currentPage, isFetching, users} = this.props;
         return <>
-            <Number totalUsersCount={this.props.totalUsersCount}
-                    pageSize={this.props.pageSize}
-                    currentPage={this.props.currentPage}
-                    onPageChanged={this.onPageChanged}
+            <Paginator totalUsersCount={totalUsersCount}
+                       pageSize={pageSize}
+                       currentPage={currentPage}
+                       onPageChanged={this.onPageChanged}
 
             />
-            {this.props.isFetching ? <Preloader/> :
-                <Users users={this.props.users}
-                       follow={this.props.follow}
-                       unfollow={this.props.unfollow}
-                       followingInProgress={this.props.followingInProgress}
+            {isFetching ? <Preloader/> :
+                <Users users={users}
+                       follow={follow}
+                       unfollow={unfollow}
+                       followingInProgress={followingInProgress}
                 />
             }
         </>

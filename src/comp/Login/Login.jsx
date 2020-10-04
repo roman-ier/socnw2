@@ -1,6 +1,6 @@
 import React from "react";
-import {Field, reduxForm} from "redux-form";
-import {FormControl} from "../Common/FormsControl/FormsControl";
+import {reduxForm} from "redux-form";
+import {createField} from "../Common/FormsControl/FormsControl";
 import {requiredField} from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
@@ -8,26 +8,14 @@ import Redirect from "react-router-dom/es/Redirect";
 import styles from '../Common/FormsControl/FormsControl.module.css';
 
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit, error}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field placeholder={'Email'} type="input" name={'email'}
-                       validate={[requiredField]}
-                       component={FormControl}/>
-            </div>
-            <div>
-                <Field placeholder={'Password'} type='password'
-                       name={'password'}
-                       component={FormControl}
-                       validate={[requiredField]}/>
-            </div>
-            <div>
-                <Field component={FormControl} name={'rememberMe'}
-                       type={'checkbox'}/> remember me
-            </div>
-            {props.error && <div className={styles.formSummaryError}>
-                {props.error}
+        <form onSubmit={handleSubmit}>
+            {createField({placeholder: 'Email'}, 'email', 'input', {validate: [requiredField]})}
+            {createField({placeholder: 'Password'}, 'password', 'password', {validate: [requiredField]})}
+            {createField(null, 'rememberMe', 'checkbox', null, 'Запомнить меня')}
+            {error && <div className={styles.formSummaryError}>
+                {error}
             </div>}
             <div>
                 <button>Login</button>
@@ -41,7 +29,6 @@ const Login = (props) => {
     const onSubmit = (formData) => {
         props.login(formData.email, formData.password, formData.rememberMe);
     }
-    //alert(props.isAuth)
     if (props.isAuth) {
 
         return <Redirect to={'/profile'}/>

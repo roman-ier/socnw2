@@ -1,41 +1,10 @@
 import React from "react";
-import styles from "./users.module.css";
-import userPhoto from "../../assets/images/img1.jpg";
-import {NavLink} from "react-router-dom";
+import User from "./User";
 
-let Users = (props) => {
+let Users = ({users, ...props}) => {
     return <div>
-        {props.users.map(u =>
-            <div key={u.id}>
-                    <span>
-                        <div>
-                            <NavLink to={'/profile/' + u.id}>
-                            <img src={u.photos.small != null ? u.photos.small : userPhoto} className={styles.photo}/>
-                            </NavLink>
-
-                        </div>
-                        <div>
-                            {u.followed
-                                ? <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                          onClick={() => {
-                                              props.unfollow(u.id, u.followed)
-                                          }}>Unfollow</button>
-                                : <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                          onClick={() => {
-                                              props.follow(u.id, u.followed)
-                                          }}>Follow</button>}
-                        </div>
-                    </span>
-                <span>
-                        <span>
-                            <div>{u.name}</div>
-                            <div>{u.status}</div>
-                        </span>
-                    { //                        <span><div>{'u.location.country'}</div>
-                        //<div>{'u.location.city'}</div></span>
-                    }
-                    </span>
-            </div>
+        {users.map(u =>
+            <User key={u.id} user={u} {...props}/>
         )}
     </div>
 }

@@ -4,7 +4,7 @@ import News from './comp/pages/News/News';
 import Music from './comp/pages/Music/Music';
 import Settings from './comp/pages/Settings/Settings';
 import Navbar from './comp/Navbar/Navbar';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import DialogsContainer from "./comp/pages/Dialogs/DialogsContainer";
 import UsersContainer from "./comp/Users/UsersContainer";
 import ProfileContainer from "./comp/pages/Profile/ProfileContainer";
@@ -27,7 +27,6 @@ class App extends React.Component {
 
         }
         return (
-            <BrowserRouter>
                 <div className='app-wrapper'>
                     <HeaderContainer/>
                     <Navbar sidebar={this.props.store.getState().sidebar}/>
@@ -52,7 +51,6 @@ class App extends React.Component {
                         <Route path='/settings' component={Settings}/>
                     </div>
                 </div>
-            </BrowserRouter>
         );
     }
 }
