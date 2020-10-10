@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react';
+import React from 'react';
 import './App.css';
 import News from './comp/pages/News/News';
 import Music from './comp/pages/Music/Music';
@@ -15,6 +15,7 @@ import {compose} from "redux";
 import withRouter from "react-router-dom/es/withRouter";
 import {initializeApp} from "./redux/app-reducer";
 import Preloader from "./comp/Common/Preloader/Preloader";
+import {withSuspense} from "./hoc/withSuspense";
 
 const DialogsContainer = React.lazy(() => import("./comp/pages/Dialogs/DialogsContainer"));
 const ProfileContainer = React.lazy(() => import("./comp/pages/Profile/ProfileContainer"));
@@ -36,23 +37,10 @@ class App extends React.Component {
                     <HeaderContainer/>
                     <Navbar sidebar={this.props.store.getState().sidebar}/>
                     <div className='app-wrapper-content'>
-                        <Route path='/dialogs' render={() => {
-                            return <Suspense fallback={<div>Загрузка....</div>}>
-                                <DialogsContainer
-                                    store={this.props.store}
-                                    state={this.props.state}
-                                    dispatch={this.props.dispatch}
-                                /></Suspense>
-                        }}/>
+                        <Route path='/dialogs'
+                               render={withSuspense(DialogsContainer)}/>
                         <Route path='/profile/:userId?'
-                               render={() => {
-                                   return <Suspense
-                                       fallback={<div>Загрузка....</div>}>
-                                       <ProfileContainer
-                                           state={this.props.state}
-                                           dispatch={this.props.dispatch}
-                                       /></Suspense>
-                               }}/>
+                               render={withSuspense(ProfileContainer)}/>
                         <Route path='/users' render={() => <UsersContainer
                             state={this.props.state}
                             dispatch={this.props.dispatch}
