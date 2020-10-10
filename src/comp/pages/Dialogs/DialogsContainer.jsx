@@ -1,4 +1,4 @@
-import React from 'react';
+//import React from 'react';
 import {addDiaActionCreator} from '../../../redux/dialog-reducer';
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";

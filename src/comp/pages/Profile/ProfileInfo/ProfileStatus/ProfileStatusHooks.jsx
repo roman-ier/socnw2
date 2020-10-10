@@ -10,8 +10,7 @@ const ProfileStatusWithHooks = (props) => {
     let activateEditMode = () => {
         setEditMode(!editMode);
         {
-            editMode &&
-            props.updateStatus(status)
+            editMode && props.updateStatus(status)
         }
     }
     let onStatusChange = (e) => {

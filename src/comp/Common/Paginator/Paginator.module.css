@@ -1,4 +1,9 @@
 .selectedPage {
     font-weight: bold;
 }
+.paginator{
+    font-size: x-large;
+    border: 1px solid #bbaeae;
+    margin-bottom: 10px;
+}
 
