@@ -27,3 +27,7 @@
     color: aliceblue;
     font-style: oblique;
 }
+
+.mainPhoto{
+    max-width: 200px;
+}
