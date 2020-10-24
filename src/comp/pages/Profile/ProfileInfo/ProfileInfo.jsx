@@ -5,7 +5,7 @@ import ProfileStatusWithHooks from "./ProfileStatus/ProfileStatusHooks";
 import userPhoto from "../../../../assets/images/img1.jpg";
 import ProfileDataForm from "./ProfileStatus/ProfileDataForm/ProfileDataForm";
 
-const ProfileInfo = ({savePhoto,profile, status, updateStatus, isOwner}) => {
+const ProfileInfo = ({savePhoto,profile, status, updateStatus, isOwner, saveProfile}) => {
     let [editMode, setEditMode] = useState(false);
     if (!profile) {
         return <Preloader/>
@@ -14,6 +14,9 @@ const ProfileInfo = ({savePhoto,profile, status, updateStatus, isOwner}) => {
         if (e.target.files.length){
             savePhoto(e.target.files[0])
         }
+    }
+    const onSubmit = (formData)=>{
+        saveProfile(formData);
     }
 
     return (
@@ -31,7 +34,7 @@ const ProfileInfo = ({savePhoto,profile, status, updateStatus, isOwner}) => {
                      className={s.mainPhoto} alt="Дазен'т фото"/>
                 {isOwner && <input type="file" onChange={onMainPhotoSelected}/>}
 
-                {editMode ? <ProfileDataForm profile={profile}/> :
+                {editMode ? <ProfileDataForm profile={profile} onSubmit={onSubmit}/> :
                     <ProfileData profile={profile} isOwner={isOwner} goToEditMode={()=>{setEditMode(true)}}/>}
 
             </div>
@@ -60,9 +63,9 @@ const ProfileData = ({profile, isOwner, goToEditMode}) => {
                         job: </b> {profile.lookingForAJob ? 'yes' : 'no'}
                 </div>
                 <div>
-                    {!profile.lookingForAJob &&
+                    {profile.lookingForAJob &&
                     <div>
-                        <b>My professionl
+                        <b>My professional
                             skills: </b> {profile.lookingForAJobDescription}
                     </div>}
                 </div>

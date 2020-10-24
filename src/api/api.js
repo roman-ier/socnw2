@@ -29,6 +29,10 @@ export const requestAPI = {
         })
 
     },
+    saveProfile(profile) {
+        return instance.put(`profile`, profile)
+
+    },
     getProfile(id) {
         return instance.get(`profile/${id}`)
 
